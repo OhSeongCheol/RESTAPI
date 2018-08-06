@@ -1,0 +1,83 @@
+html
+    head
+
+script.
+  var inputString;
+  var items;
+  var my_read = function() {
+
+    var form = document.createElement("form");
+    form.setAttribute("method", "get");
+    form.setAttribute("action", "readItem");
+    document.body.appendChild(form);
+    form.submit();
+
+    //console.log(items);
+  }
+  var my_update = function() {
+    var form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "updateItem");
+    document.body.appendChild(form);
+    form.submit();
+  }
+  var my_delete = function() {
+    var form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "deleteItem");
+    document.body.appendChild(form);
+    form.submit();
+  }
+  var my_create = function() {
+    inputString = prompt('Input Item Name', 'Sample String'); 
+
+    var form = document.createElement("form");
+    //form.setAttribute("method", "post");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "createItem");
+  
+    var result = document.createElement("input");
+    result.setAttribute("name","data");
+    result.setAttribute("value",inputString);
+    form.appendChild(result);
+    
+    console.log('asd');
+    console.log(result);
+    console.log(form);
+    console.log('asdasd');
+    
+    document.body.appendChild(form);
+
+    form.submit();
+
+  }
+  var a = function() {
+    inputString = prompt('Input Item Name', 'Sample String'); 
+
+    document.getElementById("String").innerHTML=inputString;
+    
+  }
+body    
+<a href="/main">Main</a>
+<p id="String">Hello World!</p>
+
+button(onclick='a()') test
+br
+br
+button(onclick='my_create()') 1. Create
+br
+br
+button(onclick='my_read()') 2. Read
+br
+br
+button(onclick='my_update()') 3. Update
+br
+br
+button(onclick='my_delete()') 4. Delete
+br
+br
+
+
+
+
+#{items}
