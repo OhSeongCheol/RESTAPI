@@ -7,21 +7,23 @@ router.get('/', function(req, res, next) {
     console.log('get /');
   res.render('main', { title: 'Express' });
 });
-/* GET home page. */
+
+/* POST home page. */
 router.post('/', function(req, res, next) {
     console.log('post /');
   res.render('main', { title: 'Express' });
 });
 
-/* GET home page. */
+/* PUT home page. */
 router.put('/', function(req, res, next) {
     console.log('put /');
   res.render('main', { title: 'Express' });
 });
 
-/* GET home page. */
+/* DELETE home page. */
 router.delete('/', function(req, res, next) {
     console.log('delete /');
   res.render('main', { title: 'Express' });
 });
+
 module.exports = router;

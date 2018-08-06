@@ -11,7 +11,7 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 //////////////////////////////////
-///customizing by osc
+///customizing by osc/////////////
 var mainRouter = require('./routes/main');
 var createRouter = require('./routes/create');
 var readRouter = require('./routes/read');
@@ -23,9 +23,6 @@ var deleteRouter = require('./routes/delete');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
-//app.engine('html',require('ejs').renderFile);
-//app.set('view engine','html');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -64,7 +61,8 @@ app.use(function(err, req, res, next) {
 });
 
 
-////////Config to get Post Parameter///////////////
+//////////Config to get POST Parameter///////////////
+/////////// use body-parser module //////////////////
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());

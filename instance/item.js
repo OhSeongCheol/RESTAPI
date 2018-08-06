@@ -5,7 +5,7 @@ var item = mongoose.Schema({
       contents : 'string'
     });
 
-// Casting item to Mode
+// Casting item to Model
 // for use as DB Model
 var Item = mongoose.model('Item', item);
 

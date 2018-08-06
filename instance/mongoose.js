@@ -4,10 +4,10 @@
 // 1. Load mongoose
 var mongoose = require('mongoose');
 
-// 2. Setting testDB
+// 2. Setting node Database in MongoDB
 mongoose.connect('mongodb://localhost:27017/node');
 
-// 3. Load Connected testDB 
+// 3. Load Connected node Database 
 var db = mongoose.connection;
 
 // 4. If connection fail,
@@ -20,3 +20,6 @@ db.once('open', function() {
 });
 
 module.exports = mongoose;
+// To use this module, add under code
+
+// var mongoose = require('PATH:/instance/mongoose')
