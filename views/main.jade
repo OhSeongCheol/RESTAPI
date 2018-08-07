@@ -22,14 +22,24 @@ script.
     form.submit();
   }
   var my_delete = function() {
+    inputString = prompt('Input deleted Item Name', 'Sample String'); 
+
+
     var form = document.createElement("form");
     form.setAttribute("method", "post");
     form.setAttribute("action", "deleteItem");
+
+    var result = document.createElement("input");
+    result.setAttribute("name","data");
+    result.setAttribute("value",inputString);
+    form.appendChild(result);
+
     document.body.appendChild(form);
+
     form.submit();
   }
   var my_create = function() {
-    inputString = prompt('Input Item Name', 'Sample String'); 
+    inputString = prompt('Input created Item Name', 'Sample String'); 
 
     var form = document.createElement("form");
     //form.setAttribute("method", "post");
@@ -40,11 +50,6 @@ script.
     result.setAttribute("name","data");
     result.setAttribute("value",inputString);
     form.appendChild(result);
-    
-    console.log('asd');
-    console.log(result);
-    console.log(form);
-    console.log('asdasd');
     
     document.body.appendChild(form);
 
