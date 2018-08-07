@@ -35,11 +35,11 @@ app.use('/users', usersRouter);
 
 //////////////////////////////////
 ///customizing by osc/////////////
-app.use('/main', mainRouter);
-app.use('/createItem', createRouter);
-app.use('/readItem', readRouter);
-app.use('/updateItem', updateRouter);
-app.use('/deleteItem', deleteRouter);
+app.use('/item/main', mainRouter);
+app.use('/item/1', createRouter);
+app.use('/item/2', readRouter);
+app.use('/item/3', updateRouter);
+app.use('/item/4', deleteRouter);
 //////////////////////////////////
 //////////////////////////////////
 

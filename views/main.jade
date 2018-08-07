@@ -4,11 +4,31 @@ html
 script.
   var inputString;
   var items;
+
+    var my_create = function() {
+    inputString = prompt('Input created Item Name', 'Sample String'); 
+
+    var form = document.createElement("form");
+    //form.setAttribute("method", "post");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "1");
+  
+    var result = document.createElement("input");
+    result.setAttribute("name","data");
+    result.setAttribute("value",inputString);
+    form.appendChild(result);
+    
+    document.body.appendChild(form);
+
+    form.submit();
+
+  }
+
   var my_read = function() {
 
     var form = document.createElement("form");
     form.setAttribute("method", "get");
-    form.setAttribute("action", "readItem");
+    form.setAttribute("action", "2");
     document.body.appendChild(form);
     form.submit();
 
@@ -21,7 +41,7 @@ script.
 
     var form = document.createElement("form");
     form.setAttribute("method", "post");
-    form.setAttribute("action", "updateItem");
+    form.setAttribute("action", "3");
 
     var result1 = document.createElement("input");
     result1.setAttribute("name","oldData");
@@ -44,7 +64,7 @@ script.
 
     var form = document.createElement("form");
     form.setAttribute("method", "post");
-    form.setAttribute("action", "deleteItem");
+    form.setAttribute("action", "4");
 
     var result = document.createElement("input");
     result.setAttribute("name","data");
@@ -55,24 +75,7 @@ script.
 
     form.submit();
   }
-  var my_create = function() {
-    inputString = prompt('Input created Item Name', 'Sample String'); 
 
-    var form = document.createElement("form");
-    //form.setAttribute("method", "post");
-    form.setAttribute("method", "post");
-    form.setAttribute("action", "createItem");
-  
-    var result = document.createElement("input");
-    result.setAttribute("name","data");
-    result.setAttribute("value",inputString);
-    form.appendChild(result);
-    
-    document.body.appendChild(form);
-
-    form.submit();
-
-  }
   var a = function() {
     inputString = prompt('Input Item Name', 'Sample String'); 
 
@@ -80,7 +83,8 @@ script.
     
   }
 body    
-<a href="/main">Main</a>
+<a href="/">First Page</a><br>
+<a href="/item/main">Item Main</a>
 <p id="String">Hello World!</p>
 
 button(onclick='a()') test

@@ -15,7 +15,6 @@ router.post('/', function(req, res, next) {
 
   
   Item.findOne({contents:oldData}, function(error,item){
-    console.log('--- Update(PUT) ---');
     if(error){
         console.log(error);
     }else{
@@ -24,13 +23,13 @@ router.post('/', function(req, res, next) {
             if(error){
                 console.log(error);
             }else{
-                console.log(modified_item);
-                res.render('main', { title: 'Express' });
-
+                // console.log("Success update");
             }
         });
     }
 });
+
+res.render('main', { title: 'Express' });
 
 });
 
