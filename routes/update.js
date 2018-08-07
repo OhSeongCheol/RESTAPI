@@ -1,6 +1,7 @@
 var express = require('express');
 
 var router = express.Router();
+var Item = require('../instance/item');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -9,14 +10,28 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
+  var oldData = req.body.oldData;
+  var newData = req.body.newData;
 
-  res.render('main', { title: 'Express' });
+  
+  Item.findOne({contents:oldData}, function(error,item){
+    console.log('--- Update(PUT) ---');
+    if(error){
+        console.log(error);
+    }else{
+      item.contents = newData;
+      item.save(function(error,modified_item){
+            if(error){
+                console.log(error);
+            }else{
+                console.log(modified_item);
+                res.render('main', { title: 'Express' });
+
+            }
+        });
+    }
 });
-router.put('/', function(req, res, next) {
-    //
-      //Real Update Action Logic
-    //
-  res.render('main', { title: 'Express' });
+
 });
 
 module.exports = router;

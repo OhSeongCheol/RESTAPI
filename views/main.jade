@@ -15,10 +15,27 @@ script.
     //console.log(items);
   }
   var my_update = function() {
+    inputString1 = prompt('Input old Item Name', 'Sample String'); 
+    inputString2 = prompt('Input new Item Name', 'Sample String'); 
+
+
     var form = document.createElement("form");
     form.setAttribute("method", "post");
     form.setAttribute("action", "updateItem");
+
+    var result1 = document.createElement("input");
+    result1.setAttribute("name","oldData");
+    result1.setAttribute("value",inputString1);
+
+    var result2 = document.createElement("input");
+    result2.setAttribute("name","newData");
+    result2.setAttribute("value",inputString2);
+
+    form.appendChild(result1);
+    form.appendChild(result2);
+
     document.body.appendChild(form);
+
     form.submit();
   }
   var my_delete = function() {
