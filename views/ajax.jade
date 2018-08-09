@@ -1,0 +1,81 @@
+
+html
+  head
+     title("Hello, world") 
+script.
+
+  var my_create = function() {
+  inputString = prompt('Input created Item Name', 'Sample String'); 
+
+  var json = {
+    contents: inputString
+  }
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST','http://127.0.0.1:3000/json/1');
+  xhr.setRequestHeader('Content-type', "application/json");
+  xhr.send(JSON.stringify(json));
+
+  }
+
+  var my_read = function(){
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          alert(xhr.responseText);
+        } else {
+          alert('request에 뭔가 문제가 있어요.');
+        }
+      }
+    };
+    xhr.open('GET','http://127.0.0.1:3000/json/2');
+    xhr.send();
+  }
+
+
+
+  var my_update = function() {
+  inputString1 = prompt('Input Old Item Name', 'Sample String'); 
+  inputString2 = prompt('Input New Item Name', 'Sample String'); 
+
+  var json = {
+    oldItem: inputString1,
+    newItem: inputString2
+  }
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST','http://127.0.0.1:3000/json/3');
+  xhr.setRequestHeader('Content-type', "application/json");
+  xhr.send(JSON.stringify(json));
+
+  }
+
+  var my_delete = function() {
+  inputString = prompt('Input created Item Name', 'Sample String'); 
+
+  var json = {
+    contents: inputString
+  }
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST','http://127.0.0.1:3000/json/4');
+  xhr.setRequestHeader('Content-type', "application/json");
+  xhr.send(JSON.stringify(json));
+
+  }
+body 
+br
+br
+button(onclick='my_create()') 1. Create
+br
+br
+button(onclick='my_read()') 2. Read
+br
+br
+button(onclick='my_update()') 3. Update
+br
+br
+button(onclick='my_delete()') 4. Delete
+br
+br

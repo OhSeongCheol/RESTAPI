@@ -17,6 +17,13 @@ var createRouter = require('./routes/create');
 var readRouter = require('./routes/read');
 var updateRouter = require('./routes/update');
 var deleteRouter = require('./routes/delete');
+
+var mainJsonRouter = require('./routes/json/main');
+var createJsonRouter = require('./routes/json/create');
+var readJsonRouter = require('./routes/json/read');
+var updateJsonRouter = require('./routes/json/update');
+var deleteJsonRouter = require('./routes/json/delete');
+
 //////////////////////////////////
 //////////////////////////////////
 
@@ -40,6 +47,12 @@ app.use('/item/1', createRouter);
 app.use('/item/2', readRouter);
 app.use('/item/3', updateRouter);
 app.use('/item/4', deleteRouter);
+
+app.use('/json/main', mainJsonRouter);
+app.use('/json/1', createJsonRouter);
+app.use('/json/2', readJsonRouter);
+app.use('/json/3', updateJsonRouter);
+app.use('/json/4', deleteJsonRouter);
 //////////////////////////////////
 //////////////////////////////////
 
