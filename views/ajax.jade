@@ -12,7 +12,8 @@ script.
   }
 
   var xhr = new XMLHttpRequest();
-  xhr.open('POST','http://127.0.0.1:3000/json/1');
+  //xhr.open('POST','http://127.0.0.1:3000/json/1');
+  xhr.open('POST','http://203.242.35.31:3000/json/1');
   xhr.setRequestHeader('Content-type', "application/json");
   xhr.send(JSON.stringify(json));
 
@@ -29,7 +30,8 @@ script.
         }
       }
     };
-    xhr.open('GET','http://127.0.0.1:3000/json/2');
+    //xhr.open('GET','http://127.0.0.1:3000/json/2');
+    xhr.open('POST','http://203.242.35.31:3000/json/2');
     xhr.send();
   }
 
@@ -45,7 +47,8 @@ script.
   }
 
   var xhr = new XMLHttpRequest();
-  xhr.open('POST','http://127.0.0.1:3000/json/3');
+  //xhr.open('POST','http://127.0.0.1:3000/json/3');
+  xhr.open('POST','http://203.242.35.31:3000/json/3');
   xhr.setRequestHeader('Content-type', "application/json");
   xhr.send(JSON.stringify(json));
 
@@ -59,7 +62,8 @@ script.
   }
 
   var xhr = new XMLHttpRequest();
-  xhr.open('POST','http://127.0.0.1:3000/json/4');
+  //xhr.open('POST','http://127.0.0.1:3000/json/4');
+  xhr.open('POST','http://203.242.35.31:3000/json/4');
   xhr.setRequestHeader('Content-type', "application/json");
   xhr.send(JSON.stringify(json));
 
