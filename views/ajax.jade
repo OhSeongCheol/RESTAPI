@@ -25,6 +25,8 @@ script.
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
           alert(xhr.responseText);
+          items = xhr.responseText
+          document.getElementById("p1").innerHTML=items;
         } else {
           alert('request에 뭔가 문제가 있어요.');
         }
@@ -83,3 +85,4 @@ br
 button(onclick='my_delete()') 4. Delete
 br
 br
+<p id="p1"></p>

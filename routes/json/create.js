@@ -11,8 +11,8 @@ router.get('/', function(req, res, next) {
 
 //Create Action by POST Method
 router.post('/', function(req, res, next) {
-    var data = req.body.contents;
-    // Get 'data' Parameter using body-parser module in POST Request 
+  var data = req.body.contents;
+  // Get 'data' Parameter using body-parser module in POST Request 
     var newItem = new Item({contents:data});
 
 
