@@ -2,87 +2,22 @@
 html
   head
      title("Hello, world") 
+     script(src="/js/create.js")
+     script(src="/js/update.js")
+     script(src="/js/read.js")
+     script(src="/js/delete.js")
 script.
-  // var URL='http://127.0.0.1:3000/';
-  var URL='http://203.242.35.31:3000/';
-  var my_create = function() {
-    inputString = prompt('Input created Item Name', 'Sample String'); 
-
-    var json = {
-      contents: inputString
-    }
-
-    var xhr = new XMLHttpRequest();
-    var URL=URL+'json/1';
-    var Method='POST';
-
-    xhr.open(Method,createURL);
-    xhr.setRequestHeader('Content-type', "application/json");
-    xhr.send(JSON.stringify(json));
-
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === XMLHttpRequest.DONE){
-          document.getElementById("url").innerHTML=createURL;
-          document.getElementById("status").innerHTML=xhr.status;
-        }
-    }
-  }
-
-  var my_read = function(){
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-          document.getElementById("p2").innerHTML=xhr.status;
-
-        if (xhr.status === 200) {
-          items = xhr.responseText
-          document.getElementById("p1").innerHTML=items;
-        } else {
-          alert('request에 뭔가 문제가 있어요.');
-        }
-      }
-    };
-    xhr.open('GET',URL +'json/2');
-    
-    xhr.send();
-  }
-
-
-
-  var my_update = function() {
-  inputString1 = prompt('Input Old Item Name', 'Sample String'); 
-  inputString2 = prompt('Input New Item Name', 'Sample String'); 
-
-  var json = {
-    oldItem: inputString1,
-    newItem: inputString2
-  }
-
-  var xhr = new XMLHttpRequest();
-  //xhr.open('POST','http://127.0.0.1:3000/json/3');
-  //xhr.open('POST','http://203.242.35.31:3000/json/3');
-  xhr.open('POST',URL +'json/3');
-
-  xhr.setRequestHeader('Content-type', "application/json");
-  xhr.send(JSON.stringify(json));
-
-  }
-
-  var my_delete = function() {
-  inputString = prompt('Input created Item Name', 'Sample String'); 
-
-  var json = {
-    contents: inputString
-  }
-
-  var xhr = new XMLHttpRequest();
-  //xhr.open('POST','http://127.0.0.1:3000/json/4');
-  //xhr.open('POST','http://203.242.35.31:3000/json/4');
-  xhr.open('POST',URL +'json/4');
-
-  xhr.setRequestHeader('Content-type', "application/json");
-  xhr.send(JSON.stringify(json));
-
+  var URL='http://127.0.0.1:3000/';
+  // var URL='http://203.242.35.31:3000/';
+  var d = new Date();
+  console.log(d);
+  var data = {
+    flow: "",
+    x: "",
+    y: "",
+    time: "",
+    job_id: "",
+    task_number: ""
   }
 body 
 <p id="url"></p>

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var Item = require('../../instance/item');
+var Data = require('../../instance/data');
 // DB Model
 
 router.get('/', function(req, res, next) {
