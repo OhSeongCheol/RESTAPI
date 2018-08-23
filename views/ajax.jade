@@ -3,28 +3,38 @@ html
   head
      title("Hello, world") 
 script.
-
+  // var URL='http://127.0.0.1:3000/';
+  var URL='http://203.242.35.31:3000/';
   var my_create = function() {
-  inputString = prompt('Input created Item Name', 'Sample String'); 
+    inputString = prompt('Input created Item Name', 'Sample String'); 
 
-  var json = {
-    contents: inputString
-  }
+    var json = {
+      contents: inputString
+    }
 
-  var xhr = new XMLHttpRequest();
-  //xhr.open('POST','http://127.0.0.1:3000/json/1');
-  xhr.open('POST','http://203.242.35.31:3000/json/1');
-  xhr.setRequestHeader('Content-type', "application/json");
-  xhr.send(JSON.stringify(json));
+    var xhr = new XMLHttpRequest();
+    var URL=URL+'json/1';
+    var Method='POST';
 
+    xhr.open(Method,createURL);
+    xhr.setRequestHeader('Content-type', "application/json");
+    xhr.send(JSON.stringify(json));
+
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE){
+          document.getElementById("url").innerHTML=createURL;
+          document.getElementById("status").innerHTML=xhr.status;
+        }
+    }
   }
 
   var my_read = function(){
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
       if (xhr.readyState === XMLHttpRequest.DONE) {
+          document.getElementById("p2").innerHTML=xhr.status;
+
         if (xhr.status === 200) {
-          alert(xhr.responseText);
           items = xhr.responseText
           document.getElementById("p1").innerHTML=items;
         } else {
@@ -32,8 +42,8 @@ script.
         }
       }
     };
-    //xhr.open('GET','http://127.0.0.1:3000/json/2');
-    xhr.open('GET','http://203.242.35.31:3000/json/2');
+    xhr.open('GET',URL +'json/2');
+    
     xhr.send();
   }
 
@@ -50,7 +60,9 @@ script.
 
   var xhr = new XMLHttpRequest();
   //xhr.open('POST','http://127.0.0.1:3000/json/3');
-  xhr.open('POST','http://203.242.35.31:3000/json/3');
+  //xhr.open('POST','http://203.242.35.31:3000/json/3');
+  xhr.open('POST',URL +'json/3');
+
   xhr.setRequestHeader('Content-type', "application/json");
   xhr.send(JSON.stringify(json));
 
@@ -65,12 +77,16 @@ script.
 
   var xhr = new XMLHttpRequest();
   //xhr.open('POST','http://127.0.0.1:3000/json/4');
-  xhr.open('POST','http://203.242.35.31:3000/json/4');
+  //xhr.open('POST','http://203.242.35.31:3000/json/4');
+  xhr.open('POST',URL +'json/4');
+
   xhr.setRequestHeader('Content-type', "application/json");
   xhr.send(JSON.stringify(json));
 
   }
 body 
+<p id="url"></p>
+<p id="status"></p>
 br
 br
 button(onclick='my_create()') 1. Create

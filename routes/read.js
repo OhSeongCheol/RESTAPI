@@ -6,7 +6,6 @@ var Item = require('../instance/item');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
   Item.find(function(error, items){
   //Select Documents at 'items' collections in MongoDB
   
