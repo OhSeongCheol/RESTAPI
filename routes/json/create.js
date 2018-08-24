@@ -28,7 +28,9 @@ router.post('/', function(req, res, next) {
     });
     // Save in MongoDB
 
-    res.render('main', { title: 'Express' });
+    console.log(res.statusCode);
+    res.json({status:res.statusCode});
+    //res.render('ajax', { title: 'Express' });
     //Rendering main.jade
   });
 

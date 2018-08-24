@@ -14,7 +14,7 @@ router.post('/', function(req, res, next) {
         console.log(error);
     }
   });
-  res.render('main', { title: 'Express' });
+  //res.render('ajax', { title: 'Express' });
 
 });
 module.exports = router;

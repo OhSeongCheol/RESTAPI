@@ -9,7 +9,9 @@ var usersRouter = require('./routes/users');
 
 
 var app = express();
-
+app.set('views', path.join(__dirname, 'views'));
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'ejs');
 //////////////////////////////////
 ///customizing by osc/////////////
 var mainRouter = require('./routes/main');
@@ -28,8 +30,12 @@ var deleteJsonRouter = require('./routes/json/delete');
 //////////////////////////////////
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+//app.set('views', path.join(__dirname, 'views'));
+//app.set('view engine', 'jade');
+//
+
+//app.set('views', __dirname + '/views');
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -69,10 +75,10 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
+  console.log(err);
   res.status(err.status || 500);
   res.render('error');
 });
-
 
 //////////Config to get POST Parameter///////////////
 /////////// use body-parser module //////////////////

@@ -13,8 +13,6 @@ router.post('/', function(req, res, next) {
   var oldItem = req.body.oldItem;
   var newItem = req.body.newItem;
 
-  console.log(oldItem);
-  console.log(newItem);
   Item.findOne({contents:oldItem}, function(error,item){
     if(error){
         console.log(error);
@@ -30,7 +28,7 @@ router.post('/', function(req, res, next) {
     }
 });
 
-res.render('main', { title: 'Express' });
+//res.render('ajax', { title: 'Express' });
 
 });
 

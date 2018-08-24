@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<title>
+    <%= title %>
+</title>
+
+<head>
+    <script>
+        var my_update = function () {
+            inputString1 = prompt('Input Old Item Name', 'Sample String');
+            inputString2 = prompt('Input New Item Name', 'Sample String');
+
+            var json = {
+                oldItem: inputString1,
+                newItem: inputString2
+            }
+
+            var xhr = new XMLHttpRequest();
+            //xhr.open('POST','http://127.0.0.1:3000/json/3');
+            //xhr.open('POST','http://203.242.35.31:3000/json/3');
+            xhr.open('POST', domain + updateURL);
+
+            xhr.setRequestHeader('Content-type', "application/json");
+            xhr.send(JSON.stringify(json));
+
+        }
+        var my_read = function () {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    document.getElementById("status").innerHTML = xhr.status;
+
+                    if (xhr.status === 200) {
+                        items = xhr.responseText
+                        document.getElementById("url").innerHTML = domain+readURL;
+                        document.getElementById("p1").innerHTML = items;
+                    } else {
+                        alert('request에 뭔가 문제가 있어요.');
+                    }
+                }
+            };
+            xhr.open('GET', domain + readURL);
+
+            xhr.send();
+        }
+
+        var my_delete = function () {
+            inputString = prompt('Input created Item Name', 'Sample String');
+
+            var json = {
+                contents: inputString
+            }
+
+            var xhr = new XMLHttpRequest();
+            
+            xhr.open('POST', domain + deleteURL);
+            xhr.setRequestHeader('Content-type', "application/json");
+            xhr.send(JSON.stringify(json));
+
+        }
+
+        var my_create = function () {
+            inputString = prompt('Input created Item Name', 'Sample String');
+
+            var json = {
+                contents: inputString
+            }
+
+            var data = {
+                id: "",
+                task: inputString,
+                flow: "",
+                x: "",
+                y: "",
+                time: "",
+            }
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                console.log('123123');
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    document.getElementById("url").innerHTML = createURL;
+                    document.getElementById("status").innerHTML = xhr.status;
+                }
+            }
+            xhr.open("POST", domain+createURL);
+            xhr.setRequestHeader('Content-type', "application/json");
+            xhr.send(JSON.stringify(json));
+
+            
+        }
+        var domain = <%- JSON.stringify(domain) %>;
+        var createURL = <%- JSON.stringify(createURL) %>;
+        var readURL = <%- JSON.stringify(readURL) %>;
+        var updateURL = <%- JSON.stringify(updateURL) %>;
+        var deleteURL = <%- JSON.stringify(deleteURL) %>;
+
+
+        var d = new Date();
+        console.log(d);
+
+        var data = {
+            flow: "",
+            x: "",
+            y: "",
+            time: "",
+            job_id: "",
+            task_number: ""
+        }
+    </script>
+</head>
+
+<body>
+
+    <a>domain is "
+        <%= domain %>"</a>
+    <br>
+    <a>createURL is "
+        <%= createURL %>"</a>
+    <br>
+    <a>readURL is "
+        <%= readURL %>"</a>
+    <br>
+    <a>updateURL is "
+        <%= updateURL %>"</a>
+    <br>
+    <a>deleteURL is "
+        <%=deleteURL%>"</a>
+        <br>
+        <br>
+        <table border='1'>
+        <tr>
+            <td> URL </td>
+            <td> Status </td>
+        </tr>
+        <tr>
+            <td>
+                <p id="url"></p>
+            </td>
+            <td>
+                <p id="status"></p>
+            </td>
+        </tr>
+    </table>
+
+    <br>
+    <button onclick='my_create()'>1. Create</button>
+    <br>
+    <br>
+    <button onclick='my_read()'>2. Read </button>
+    <br>
+    <br>
+    <button onclick='my_update()'>3. Update</button>
+    <br>
+    <br>
+    <button onclick='my_delete()'>4. Delete</button>
+    <br>
+    <br>
+    <button onclick='log()'>5. Test</button>
+    <p id="p1"></p>
+</body>
+
+</html>
