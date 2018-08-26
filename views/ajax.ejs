@@ -6,60 +6,8 @@
 
 <head>
     <script>
-        var my_update = function () {
-            inputString1 = prompt('Input Old Item Name', 'Sample String');
-            inputString2 = prompt('Input New Item Name', 'Sample String');
-
-            var json = {
-                oldItem: inputString1,
-                newItem: inputString2
-            }
-
-            var xhr = new XMLHttpRequest();
-            //xhr.open('POST','http://127.0.0.1:3000/json/3');
-            //xhr.open('POST','http://203.242.35.31:3000/json/3');
-            xhr.open('POST', domain + updateURL);
-
-            xhr.setRequestHeader('Content-type', "application/json");
-            xhr.send(JSON.stringify(json));
-
-        }
-        var my_read = function () {
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    document.getElementById("status").innerHTML = xhr.status;
-
-                    if (xhr.status === 200) {
-                        items = xhr.responseText
-                        document.getElementById("url").innerHTML = domain+readURL;
-                        document.getElementById("p1").innerHTML = items;
-                    } else {
-                        alert('request에 뭔가 문제가 있어요.');
-                    }
-                }
-            };
-            xhr.open('GET', domain + readURL);
-
-            xhr.send();
-        }
-
-        var my_delete = function () {
-            inputString = prompt('Input created Item Name', 'Sample String');
-
-            var json = {
-                contents: inputString
-            }
-
-            var xhr = new XMLHttpRequest();
-            
-            xhr.open('POST', domain + deleteURL);
-            xhr.setRequestHeader('Content-type', "application/json");
-            xhr.send(JSON.stringify(json));
-
-        }
-
-        var my_create = function () {
+        //Create
+        var jsonCreate = function () {
             inputString = prompt('Input created Item Name', 'Sample String');
 
             var json = {
@@ -76,7 +24,6 @@
             }
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
-                console.log('123123');
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     document.getElementById("url").innerHTML = createURL;
                     document.getElementById("status").innerHTML = xhr.status;
@@ -86,8 +33,68 @@
             xhr.setRequestHeader('Content-type', "application/json");
             xhr.send(JSON.stringify(json));
 
-            
         }
+
+        //Read
+        var jsonRead = function () {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    document.getElementById("status").innerHTML = xhr.status;
+                    document.getElementById("url").innerHTML = readURL;
+                    document.getElementById("items").innerHTML = xhr.responseText;
+                }
+            };
+            xhr.open('GET', domain + readURL);
+            xhr.send();
+        }
+
+        //Update
+        var jsonUpdate = function () {
+            inputString1 = prompt('Input Old Item Name', 'Sample String');
+            inputString2 = prompt('Input New Item Name', 'Sample String');
+
+            var json = {
+                oldItem: inputString1,
+                newItem: inputString2
+            }
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    document.getElementById("status").innerHTML = xhr.status;
+                    document.getElementById("url").innerHTML = updateURL;
+                }
+            };
+            xhr.open('POST', domain + updateURL);
+
+            xhr.setRequestHeader('Content-type', "application/json");
+            xhr.send(JSON.stringify(json));
+
+        }
+
+        //Delete
+        var jsonDelete = function () {
+            inputString = prompt('Input created Item Name', 'Sample String');
+
+            var json = {
+                contents: inputString
+            }
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    document.getElementById("status").innerHTML = xhr.status;
+                    document.getElementById("url").innerHTML = deleteURL;
+                }
+            };
+            xhr.open('POST', domain + deleteURL);
+            xhr.setRequestHeader('Content-type', "application/json");
+            xhr.send(JSON.stringify(json));
+
+        }
+
+        
         var domain = <%- JSON.stringify(domain) %>;
         var createURL = <%- JSON.stringify(createURL) %>;
         var readURL = <%- JSON.stringify(readURL) %>;
@@ -143,20 +150,19 @@
     </table>
 
     <br>
-    <button onclick='my_create()'>1. Create</button>
+    <button onclick='jsonCreate()'>1. Create</button>
     <br>
     <br>
-    <button onclick='my_read()'>2. Read </button>
+    <button onclick='jsonRead()'>2. Read </button>
     <br>
     <br>
-    <button onclick='my_update()'>3. Update</button>
+    <button onclick='jsonUpdate()'>3. Update</button>
     <br>
     <br>
-    <button onclick='my_delete()'>4. Delete</button>
+    <button onclick='jsonDelete()'>4. Delete</button>
     <br>
     <br>
-    <button onclick='log()'>5. Test</button>
-    <p id="p1"></p>
+    <p id="items"></p>
 </body>
 
 </html>

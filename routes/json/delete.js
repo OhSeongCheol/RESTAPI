@@ -15,6 +15,7 @@ router.post('/', function(req, res, next) {
     }
   });
   //res.render('ajax', { title: 'Express' });
+  res.json({});
 
 });
 module.exports = router;

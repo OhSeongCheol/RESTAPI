@@ -1,13 +1,13 @@
 var mongoose = require('./mongoose')
 
 // Setting Schema 
-var URL = mongoose.Schema({
+var url = mongoose.Schema({
       contents : 'string'
     });
 
 // Casting item to Model
 // for use as DB Model
-var urlModel = mongoose.model('URL', URL);
+var urlModel = mongoose.model('url', url);
 var createURL;
 var updateURL;
 var deleteURL;
@@ -25,10 +25,7 @@ urlModel.find(function(error, url){
         deleteURL = url[3].contents;
 
       }
-      console.log("----1---");
-
-      console.log("---1----");
-
+      console.log("Success Load URL");
     }
 
 )
