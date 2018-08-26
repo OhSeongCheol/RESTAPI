@@ -5,7 +5,6 @@ var domain = require('../../instance/domain');
 var url = require('../../instance/url');
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
   url.find(function(error, url){
     //Select Documents at 'items' collections in MongoDB
     if(error){

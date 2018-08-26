@@ -16,7 +16,7 @@ db.on('error', function(){
 });
 // 5. If connection success,
 db.once('open', function() {
-    console.log('Connected!');
+    console.log('Connected to DB!');
 });
 
 module.exports = mongoose;

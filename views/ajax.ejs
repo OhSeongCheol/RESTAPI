@@ -8,20 +8,24 @@
     <script>
         //Create
         var jsonCreate = function () {
-            inputString = prompt('Input created Item Name', 'Sample String');
+            //inputString = prompt('Input created Item Name', 'Sample String');
+            task = prompt('Input created Item Name', 'Sample String');
 
+/*
             var json = {
                 contents: inputString
             }
-
+*/          
+            var date = new Date();
             var data = {
                 id: "",
-                task: inputString,
-                flow: "",
-                x: "",
-                y: "",
-                time: "",
+                task: task,
+                flow: "1",
+                x: "0",
+                y: "0",
+                time: date,
             }
+            
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -31,7 +35,7 @@
             }
             xhr.open("POST", domain+createURL);
             xhr.setRequestHeader('Content-type', "application/json");
-            xhr.send(JSON.stringify(json));
+            xhr.send(JSON.stringify(data));
 
         }
 
@@ -42,7 +46,38 @@
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     document.getElementById("status").innerHTML = xhr.status;
                     document.getElementById("url").innerHTML = readURL;
-                    document.getElementById("items").innerHTML = xhr.responseText;
+                    Datas = xhr.responseText;
+                    var jsonDatas = JSON.parse(Datas);
+                    
+                        var innerHTML = "";
+                    for(var i=0;i<jsonDatas.length;i++){
+                        innerHTML += "<tr>";
+
+                        innerHTML += "<td>" + jsonDatas[i].id + "</td>";
+                        innerHTML += "<td>" + jsonDatas[i].task + "</td>";
+                        innerHTML += "<td>" + jsonDatas[i].flow + "</td>";
+                        innerHTML += "<td>" + jsonDatas[i].x + "</td>";
+                        innerHTML += "<td>" + jsonDatas[i].y + "</td>";
+                        innerHTML += "<td>" + jsonDatas[i].time + "</td>";
+
+                        innerHTML += "</tr>";
+                    }
+
+                    document.getElementById("Datas").innerHTML = "<table border='1'>\
+                        <tbody>\
+                        <tr>\
+                            <td>id</td>\
+                            <td>task</td >\
+                            <td> flow </td>\
+                            <td> x </td>\
+                            <td> y </td>\
+                            <td> time </td>\
+                        </tr >" 
+                        + innerHTML 
+                        + "</tbody>\
+                        </table>";
+
+
                 }
             };
             xhr.open('GET', domain + readURL);
@@ -102,8 +137,7 @@
         var deleteURL = <%- JSON.stringify(deleteURL) %>;
 
 
-        var d = new Date();
-        console.log(d);
+
 
         var data = {
             flow: "",
@@ -134,7 +168,7 @@
         <%=deleteURL%>"</a>
         <br>
         <br>
-        <table border='1'>
+    <table border='1'>
         <tr>
             <td> URL </td>
             <td> Status </td>
@@ -162,7 +196,8 @@
     <button onclick='jsonDelete()'>4. Delete</button>
     <br>
     <br>
-    <p id="items"></p>
+    <p id="Datas"></p>
+  
 </body>
 
 </html>

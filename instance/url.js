@@ -25,7 +25,7 @@ urlModel.find(function(error, url){
         deleteURL = url[3].contents;
 
       }
-      console.log("Success Load URL");
+      console.log("Success Load to URL");
     }
 
 )
