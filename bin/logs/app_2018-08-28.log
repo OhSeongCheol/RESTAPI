@@ -1,0 +1,14 @@
+{"message":"Hello, World","level":"info"}
+{"message":"Hello, winston","level":"info"}
+{"message":"Hello, winston","level":"info"}
+{"message":"qwe","level":"error"}
+{"message":"Hello, winston","level":"info"}
+{"message":"qwe","level":"error"}
+{"message":"error: 0","level":"error"}
+{"message":"warn: 1","level":"warn"}
+{"message":"info: 2","level":"info"}
+{"message":"Hello, winston","level":"info"}
+{"message":"qwe","level":"error"}
+{"message":"error: 0","level":"error"}
+{"message":"warn: 1","level":"warn"}
+{"message":"info: 2","level":"info"}

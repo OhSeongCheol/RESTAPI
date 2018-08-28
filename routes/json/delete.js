@@ -22,7 +22,7 @@ router.post('/', function(req, res, next) {
     }
   });*/
   //res.render('ajax', { title: 'Express' });
-  res.json({});
+  res.json({success:1});
 
 });
 module.exports = router;

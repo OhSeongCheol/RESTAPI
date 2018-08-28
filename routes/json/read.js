@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
             if(error){
                 console.log(error);
             }else{
-                res.json(items);
+                res.json({items,success:1});
                 //res.render('main', { items: items });
       
             }

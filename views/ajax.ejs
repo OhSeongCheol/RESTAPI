@@ -44,12 +44,16 @@
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
+                    Datas = xhr.responseText;
+                    var parseJson = JSON.parse(Datas);
+                    var isSuccess=parseJson.success;
+                    var jsonDatas = parseJson.items;
+
                     document.getElementById("status").innerHTML = xhr.status;
                     document.getElementById("url").innerHTML = readURL;
-                    Datas = xhr.responseText;
-                    var jsonDatas = JSON.parse(Datas);
-                    
-                        var innerHTML = "";
+                    document.getElementById("success").innerHTML = isSuccess;
+
+                    var innerHTML = "";
                     for(var i=0;i<jsonDatas.length;i++){
                         innerHTML += "<tr>";
 
@@ -172,6 +176,7 @@
         <tr>
             <td> URL </td>
             <td> Status </td>
+            <td> isSuccess </td>
         </tr>
         <tr>
             <td>
@@ -179,6 +184,8 @@
             </td>
             <td>
                 <p id="status"></p>
+            </td>            <td>
+                <p id="success"></p>
             </td>
         </tr>
     </table>

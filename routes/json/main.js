@@ -3,8 +3,21 @@ var express = require('express');
 var router = express.Router();
 var domain = require('../../instance/domain');
 var url = require('../../instance/url');
+
+var logger = require('../../instance/winston');
+logger.error('qwe');
+
+
+logger.error("error: 0"); 
+logger.warn("warn: 1"); 
+logger.info("info: 2"); 
+logger.verbose("verbose: 3"); 
+logger.debug("debug: 4"); 
+logger.silly("silly: 5");
+ 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  var title = "NodeJS"
   url.find(function(error, url){
     //Select Documents at 'items' collections in MongoDB
     if(error){
@@ -23,8 +36,8 @@ router.get('/', function(req, res, next) {
           readURL: readURL,
           updateURL: updateURL,
           deleteURL: deleteURL,
-          title: 'Express',
-          teststr: 'teststr' });
+          title: title,
+          success:1 });
       });
 });
 
