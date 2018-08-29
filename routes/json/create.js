@@ -1,51 +1,42 @@
 var express = require('express');
 var router = express.Router();
-var domain = require('../../instance/domain');
 
-var Item = require('../../instance/item');
-var Data = require('../../instance/data');
-// DB Model
+/////My Module////
 var logger = require('../../instance/winston');
+var Data = require('../../instance/data');
+var domain = require('../../instance/domain');
+/////My Module////
 
-//Create Action by POST Method
-router.post('/', function(req, res, next) {
-  logger.info(domain + req.baseUrl); 
-  var data = req.body.contents;
-  // Get 'data' Parameter using body-parser module in POST Request 
-    var newItem = new Item({contents:data});
+// Create Action by POST Method
+router.post('/', function (req, res, next) {
+  logger.info(domain + req.baseUrl);
+  // Logging
 
-    var createData = new Data();
+  var createData = new Data();
+  createData.task = req.body.task;
+  createData.flow = req.body.flow;
+  createData.x = req.body.x;
+  createData.y = req.body.y;
+  createData.time = req.body.time;
+  // data parsing
 
-    createData.task=req.body.task;
-    createData.flow=req.body.flow;
-    createData.x=req.body.x;
-    createData.y=req.body.y;
-    createData.time=req.body.time; 
-    
-    Data.countDocuments(function(error, data){
-      createData.id=data+1;
-      createData.save(function(error, data){
-        if(error){
-            console.log("Error to save");
-        }else{
-            console.log('Saved!')
-        }
-      });
-    })
+  Data.countDocuments(function (error, data) {
+    //Read to count that data document in DB
 
-    
+    createData.id = data + 1;
+    //And id is count+1
 
-    /*
-    newItem.save(function(error, data){
-      if(error){
-          console.log(error);
-      }else{
-          console.log('Saved!')
+    createData.save(function (error, data) {
+      //insert Data to DB
+      if (error) {
+        console.log('Failed to create');
+      } else {
+        console.log('Successed to create')
       }
     });
-    */
-    // Save in MongoDB
-    res.json({success:1});
-  });
+  })
+
+  res.json({ success: 1 });
+});
 
 module.exports = router;

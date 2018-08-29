@@ -10,14 +10,9 @@
         var jsonCreate = function () {
             //inputString = prompt('Input created Item Name', 'Sample String');
             task = prompt('Input created Item Name', 'Sample String');
-
-/*
-            var json = {
-                contents: inputString
-            }
-*/          
             var date = new Date();
-            var data = {
+
+            var inputData = {
                 id: "",
                 task: task,
                 flow: "1",
@@ -25,17 +20,19 @@
                 y: "0",
                 time: date,
             }
-            
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
+                    var jsonData = JSON.parse(xhr.responseText);
+
                     document.getElementById("url").innerHTML = createURL;
                     document.getElementById("status").innerHTML = xhr.status;
+                    document.getElementById("success").innerHTML = jsonData.success;
                 }
             }
             xhr.open("POST", domain+createURL);
             xhr.setRequestHeader('Content-type', "application/json");
-            xhr.send(JSON.stringify(data));
+            xhr.send(JSON.stringify(inputData));
 
         }
 
@@ -44,10 +41,9 @@
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
-                    Datas = xhr.responseText;
-                    var parseJson = JSON.parse(Datas);
-                    var isSuccess=parseJson.success;
-                    var jsonDatas = parseJson.items;
+                    var Datas = JSON.parse(xhr.responseText);
+                    var isSuccess=Datas.success;
+                    var jsonDatas = Datas.items;
 
                     document.getElementById("status").innerHTML = xhr.status;
                     document.getElementById("url").innerHTML = readURL;
@@ -92,7 +88,6 @@
         var jsonUpdate = function () {
             inputString1 = prompt('Input Old Item Name', 'Sample String');
             inputString2 = prompt('Input New Item Name', 'Sample String');
-
             var json = {
                 oldItem: inputString1,
                 newItem: inputString2
@@ -101,8 +96,12 @@
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
+                    var jsonData = JSON.parse(xhr.responseText);
+
                     document.getElementById("status").innerHTML = xhr.status;
                     document.getElementById("url").innerHTML = updateURL;
+                    document.getElementById("success").innerHTML = jsonData.success;
+
                 }
             };
             xhr.open('POST', domain + updateURL);
@@ -123,8 +122,12 @@
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
+                    var jsonData = JSON.parse(xhr.responseText);
+
                     document.getElementById("status").innerHTML = xhr.status;
                     document.getElementById("url").innerHTML = deleteURL;
+                    document.getElementById("success").innerHTML = jsonData.success;
+
                 }
             };
             xhr.open('POST', domain + deleteURL);

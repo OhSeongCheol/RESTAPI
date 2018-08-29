@@ -1,5 +1,5 @@
 /*
-const levels = { 
+# Log levels = { 
     error: 0, 
     warn: 1, 
     info: 2, 
@@ -8,6 +8,18 @@ const levels = {
     silly: 5 
   };
 */
+
+
+/* 
+# Logging Example
+logger.error("error: 0");
+logger.warn("warn: 1");
+logger.info("info: 2");
+logger.verbose("verbose: 3");
+logger.debug("debug: 4");
+logger.silly("silly: 5");
+*/
+
 
 var winston = require('winston');    				// 로그 처리 모듈
 var winstonDaily = require('winston-daily-rotate-file');    	// 로그 일별 처리 모듈
