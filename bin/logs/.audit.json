@@ -14,6 +14,16 @@
             "date": 1535433645298,
             "name": "logs\\exception_2018-08-28.log",
             "hash": "5726f05b9db002267a338ed0b23235f3"
+        },
+        {
+            "date": 1535508467541,
+            "name": "logs\\app_2018-08-29.log",
+            "hash": "3d4118937ae97c1e0a2d0fa86a69e4d8"
+        },
+        {
+            "date": 1535509224888,
+            "name": "logs\\exception_2018-08-29.log",
+            "hash": "0fa894d656729a5f07a25b5c288ff92e"
         }
     ]
 }

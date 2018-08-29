@@ -1,0 +1,8 @@
+{"message":"error: 0","level":"error"}
+{"message":"warn: 1","level":"warn"}
+{"message":"info: 2","level":"info"}
+${info.timestamp} [${info.label}] ${info.level}: ${info.message}
+NaNinfoHello, winstonthis my format!!
+undefined,undefined,info,Hello, winston,this my format!!
+info,Hello, winston,this my format!!
+{info/Hello, winston/this my format!!}

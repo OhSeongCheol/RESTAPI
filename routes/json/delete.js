@@ -4,8 +4,11 @@ var router = express.Router();
 var Item = require('../../instance/item');
 var Data = require('../../instance/data');
 
+var domain = require('../../instance/domain');
+var logger = require('../../instance/winston');
 
 router.post('/', function(req, res, next) {
+  logger.info(domain + req.baseUrl); 
 
   var contents = req.body.contents;
   // Get 'data' Parameter using body-parser module in POST Request 

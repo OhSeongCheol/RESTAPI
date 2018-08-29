@@ -1,8 +1,10 @@
 var express = require('express');
+var domain = require('../../instance/domain');
 
 var router = express.Router();
 var Item = require('../../instance/item');
 var Data = require('../../instance/data');
+var logger = require('../../instance/winston');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -13,6 +15,7 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   var oldItem = req.body.oldItem;
   var newItem = req.body.newItem;
+  logger.info(domain + req.baseUrl); 
 
   Data.findOne({task:oldItem}, function(error,item){
     if(error){

@@ -1,12 +1,15 @@
 var express = require('express');
 var router = express.Router();
+var domain = require('../../instance/domain');
 
 var Item = require('../../instance/item');
 var Data = require('../../instance/data');
 // DB Model
+var logger = require('../../instance/winston');
 
 //Create Action by POST Method
 router.post('/', function(req, res, next) {
+  logger.info(domain + req.baseUrl); 
   var data = req.body.contents;
   // Get 'data' Parameter using body-parser module in POST Request 
     var newItem = new Item({contents:data});

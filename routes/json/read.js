@@ -2,12 +2,16 @@ var express = require('express');
 var router = express.Router();
 var Item = require('../../instance/item');
 var Data = require('../../instance/data');
+var logger = require('../../instance/winston');
 
+var domain = require('../../instance/domain');
 
 // DB Model
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  logger.info(domain + req.baseUrl); 
+    
     Data.find(function(error, items){
         //Select Documents at 'items' collections in MongoDB
         
