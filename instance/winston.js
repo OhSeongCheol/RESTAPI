@@ -39,7 +39,7 @@ const tsFormat = () => (new Date()).toLocaleTimeString();      // '2018-01-01'
 const myFormat = printf(info => {
     //return info.timestamp +','+ info.label +','+ info.level +','+ info.message +','+ 'this my format!!';
     var currentTime = new Date();
-    return '{' + ' Level : ' + info.level +','+ ' Message : ' + info.message +','+ currentTime + ' This my format' + '}';
+    return '{' + ' Level : ' + info.level +','+ ' Message : ' + info.message +','+ currentTime + ' This is my format' + '}';
 });
     
 // 로그 설정
